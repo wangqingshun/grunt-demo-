@@ -1,35 +1,15 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    mochacli: {
+    htmlhint: {
       options: {
-        reporter: 'spec',
-        bail: true
+        htmlhintrc: '.htmlhintrc'
       },
-      all: ['test/*.js']
-    },
-    mocha_istanbul: {
-      coverage: {
-        src: 'test'
-      }
-    },
-    istanbul_check_coverage: {
-      default: {
-        options: {
-          coverageFolder: 'coverage*',
-          check: {
-            lines: 90,
-            statements: 90
-          }
-        }
-      }
-    }
-  });
+      src:['*.html']
+     }
+   });
 
-  grunt.loadNpmTasks('grunt-mocha-cli');
-  grunt.loadNpmTasks('grunt-mocha-istanbul');
+  grunt.loadNpmTasks('grunt-htmlhint');
 
-  grunt.registerTask('default', ['mochacli']);   
-  grunt.registerTask('cover', ['mocha_istanbul']);
-  grunt.registerTask('check-cover', ['istanbul_check_coverage']);
+  grunt.registerTask('default', ['htmlhint']);
 };
 
